@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://7fhj88fp6due"]
+
+[ext_resource type="Texture2D" uid="uid://o2eyp0foofi3" path="res://icon.svg" id="1_8fctd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uc0ko"]
+
+[node name="Tree" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_uc0ko")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+texture = ExtResource("1_8fctd")
