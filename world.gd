@@ -4,6 +4,8 @@ const WIDTH = 256
 const LENGTH = 256
 const PLAYER_SPAWN = Vector3i(0, 0, 0)
 
+const WATCHTOWER_DISTANCE_MIN = ((WIDTH + LENGTH) / 2) / 4
+
 const TREE_SPRITE_SCALE = Vector3(2, 4, 2)
 const GRASS_SPRITE_SCALE = Vector3(1, 1, 1)
 const BUSH_SPRITE_SCALE = Vector3(1, 1, 1)
@@ -47,17 +49,42 @@ var rock_textures = [
 	
 ]
 
-func get_imagetexture(path: String) -> ImageTexture:
+func center_position(coordinate) -> Vector3:
+	return Vector3(coordinate.x - WIDTH / 2, 0, coordinate.z - LENGTH / 2)
+
+func get_dist_between(a, b) -> float:
+	return sqrt((b.x - a.x)**2 + (b.y - a.y)**2)
+
+func get_imagetexture(path) -> ImageTexture:
 	return ImageTexture.create_from_image(Image.load_from_file(path))
 
 func _ready() -> void:
 	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	
+	var watchtower_first = center_position(Vector3(randi_range(0, WIDTH), 0, randi_range(0, LENGTH)))
+	var watchtower_second
+	var watchtower_third
+	
+	while watchtower_second == null:
+		var random_position = center_position(Vector3(randi_range(0, WIDTH), 0, randi_range(0, LENGTH)))
+		
+		if get_dist_between(watchtower_first, random_position) > WATCHTOWER_DISTANCE_MIN:
+			watchtower_second = random_position
+			
+	while watchtower_third == null:
+		var random_position = center_position(Vector3(randi_range(0, WIDTH), 0, randi_range(0, LENGTH)))
+		
+		if get_dist_between(watchtower_first, random_position) > WATCHTOWER_DISTANCE_MIN and \
+			get_dist_between(watchtower_second, random_position) > WATCHTOWER_DISTANCE_MIN:
+			watchtower_third = random_position
+			
+	print(watchtower_first, watchtower_second, watchtower_third)
+	
 	for x in range(WIDTH):
 		for z in range(LENGTH):
-			var position = Vector3(x - WIDTH / 2, 0, z - LENGTH / 2)
-			var tile_noise = noise.get_noise_2d(x, z)
+			var position = center_position(Vector3(x, 0, z))
+			var tile_noise = noise.get_noise_2d(position.x, position.z)
 			
 			if grass_noise_condition.call(tile_noise):
 				grid_map.set_cell_item(position, 0)
