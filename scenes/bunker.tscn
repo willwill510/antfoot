@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmho2cnj6rvm6"]
+
+[ext_resource type="Script" path="res://bunker.gd" id="1_lwpjm"]
+[ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="2_bennj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxjx2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cuuq1"]
+albedo_color = Color(0, 0.329514, 0.00901195, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ssca"]
+material = SubResource("StandardMaterial3D_cuuq1")
+size = Vector2(8, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r4pv6"]
+
+[node name="Bunker" type="Node3D"]
+script = ExtResource("1_lwpjm")
+
+[node name="Player" parent="." instance=ExtResource("2_bennj")]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99865, 0, 3.80556)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_sxjx2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.743557, 0)
+mesh = SubResource("PlaneMesh_1ssca")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97935, 0, 4.50524)
+mesh = SubResource("BoxMesh_r4pv6")

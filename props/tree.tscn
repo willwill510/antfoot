@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://7fhj88fp6due"]
+[gd_scene load_steps=4 format=3 uid="uid://7fhj88fp6due"]
 
 [ext_resource type="Texture2D" uid="uid://o2eyp0foofi3" path="res://icon.svg" id="1_8fctd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qr48t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uc0ko"]
 
 [node name="Tree" type="StaticBody3D"]
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qr48t")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("CapsuleShape3D_uc0ko")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

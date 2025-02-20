@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjynuxvhb2qnw"]
+
+[ext_resource type="Script" path="res://watchtower_inside.gd" id="1_bm2lx"]
+[ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="1_kru62"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5kxd7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_civv6"]
+albedo_color = Color(0.4498, 0.254524, 0.118711, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_20g2a"]
+material = SubResource("StandardMaterial3D_civv6")
+size = Vector2(8, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3fxe"]
+
+[node name="WatchtowerInside" type="Node3D"]
+script = ExtResource("1_bm2lx")
+
+[node name="Player" parent="." instance=ExtResource("1_kru62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65814, 0, 3.36458)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99462, -0.978112, 4.75145)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_5kxd7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_20g2a")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7903, -0.396821, 5.10745)
+mesh = SubResource("BoxMesh_b3fxe")
+skeleton = NodePath("../MeshInstance3D")

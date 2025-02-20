@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://h2iiaj5n8w2m"]
+
+[ext_resource type="Script" path="res://watchtower.gd" id="1_xbpte"]
+[ext_resource type="Texture2D" uid="uid://ci12qswlox228" path="res://textures/watchtower.png" id="2_y56gs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6wpj"]
+
+[node name="Watchtower" type="Area3D"]
+script = ExtResource("1_xbpte")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0)
+shape = SubResource("BoxShape3D_j6wpj")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_y56gs")

@@ -5,7 +5,6 @@ const MOUSE_SENS = 0.5
 const SPRITE_SCALE = Vector2(4, 4)
 
 @onready var anim_player = $AnimationPlayer
-@onready var raycast = $RayCast3D
 @onready var map_menu = $UI/MapMenu
 @onready var tool_menu = $UI/ToolMenu
 @onready var tool_sprite = $UI/ToolEquiped/Sprite2D
@@ -65,11 +64,11 @@ func _physics_process(delta: float) -> void:
 		move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 		move_and_collide(move_vec * MOVE_SPEED * delta)
 		
-		if Input.is_action_pressed('use') and !anim_player.is_playing():
-			anim_player.play('use_flare')
-			var coll = raycast.get_collider()
-			if raycast.is_colliding() and coll.has_method('kill'):
-				coll.kill()
-
+		#if Input.is_action_pressed('use') and !anim_player.is_playing():
+			#anim_player.play('use_flare')
+			#var coll = raycast.get_collider()
+			#if raycast.is_colliding() and coll.has_method('kill'):
+				#coll.kill()
+#
 func kill() -> void:
 	get_tree().reload_current_scene()

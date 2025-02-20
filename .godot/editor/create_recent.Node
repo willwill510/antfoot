@@ -1,5 +1,9 @@
-MeshInstance3D
-Sprite3D
+Node
 CollisionShape3D
+Area3D
+MeshInstance3D
+Control
+Label
+Sprite3D
 StaticBody3D
 GridMap

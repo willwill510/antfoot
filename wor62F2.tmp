@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcfsc0ld5w4ip"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_3d2ah"]
+[ext_resource type="MeshLibrary" uid="uid://b5h5ucegav308" path="res://tiles.tres" id="4_7vnyn"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_3d2ah")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = ExtResource("4_7vnyn")
+cell_size = Vector3(1, 1, 1)

@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://6vuytot16dnc"]
+[gd_scene load_steps=6 format=3 uid="uid://6vuytot16dnc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_l1tvb"]
 [ext_resource type="PackedScene" uid="uid://dubupiotcgo6l" path="res://map_menu.tscn" id="2_a6fhy"]
 [ext_resource type="PackedScene" uid="uid://dgtcfj0l6tkj1" path="res://tool_menu.tscn" id="2_esh3s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3c7g1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m6q2a"]
+font_size = 36
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_l1tvb")
@@ -13,6 +18,7 @@ script = ExtResource("1_l1tvb")
 shape = SubResource("CapsuleShape3D_3c7g1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575409, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -2000)
@@ -40,15 +46,68 @@ texture_filter = 1
 
 [node name="ToolMenu" parent="UI" instance=ExtResource("2_esh3s")]
 
-[node name="TextureRect" type="TextureRect" parent="UI"]
-anchors_preset = 8
+[node name="EnterIndicators" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 40.0
 grow_horizontal = 2
-grow_vertical = 2
+
+[node name="Available" type="Label" parent="UI/EnterIndicators"]
+visible = false
+layout_mode = 0
+offset_left = -172.0
+offset_top = 25.0
+offset_right = 173.0
+offset_bottom = 75.0
+text = "PRESS \"F\" TO ENTER"
+label_settings = SubResource("LabelSettings_m6q2a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blocked" type="Label" parent="UI/EnterIndicators"]
+visible = false
+offset_left = -172.0
+offset_top = 25.0
+offset_right = 173.0
+offset_bottom = 75.0
+text = "ALREADY ENTERED"
+label_settings = SubResource("LabelSettings_m6q2a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitIndicators" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Available" type="Label" parent="UI/ExitIndicators"]
+visible = false
+offset_left = -172.0
+offset_top = 25.0
+offset_right = 173.0
+offset_bottom = 75.0
+text = "PRESS \"F\" TO EXIT
+"
+label_settings = SubResource("LabelSettings_m6q2a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blocked" type="Label" parent="UI/ExitIndicators"]
+visible = false
+offset_left = -172.0
+offset_top = 25.0
+offset_right = 173.0
+offset_bottom = 75.0
+text = "CANNOT EXIT"
+label_settings = SubResource("LabelSettings_m6q2a")
+horizontal_alignment = 1
+vertical_alignment = 1
