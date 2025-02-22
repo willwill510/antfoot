@@ -10,3 +10,4 @@ res://scene_manager.tscn
 res://scene_manager.gd
 res://watchtower.gd
 res://watchtower_inside.gd
+res://bunker.gd

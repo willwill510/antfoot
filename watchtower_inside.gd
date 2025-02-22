@@ -28,3 +28,4 @@ func _physics_process(delta: float) -> void:
 	elif shown:
 		indicator_available.hide()
 		indicator_blocked.hide()
+		shown = false

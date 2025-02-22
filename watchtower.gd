@@ -13,9 +13,6 @@ var shown = false
 func _physics_process(delta: float) -> void:
 	var overlaps = overlaps_body(player)
 	
-	if overlaps:
-		print(entered, shown)
-	
 	if not entered and overlaps: #player entered 
 		indicator_available.show()
 		shown = true
@@ -32,3 +29,4 @@ func _physics_process(delta: float) -> void:
 	elif shown:
 		indicator_available.hide()
 		indicator_blocked.hide()
+		shown = false
