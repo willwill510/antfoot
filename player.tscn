@@ -70,6 +70,7 @@ vertical_alignment = 1
 
 [node name="Blocked" type="Label" parent="UI/EnterIndicators"]
 visible = false
+layout_mode = 0
 offset_left = -172.0
 offset_top = 25.0
 offset_right = 173.0
@@ -91,6 +92,7 @@ grow_horizontal = 2
 
 [node name="Available" type="Label" parent="UI/ExitIndicators"]
 visible = false
+layout_mode = 0
 offset_left = -172.0
 offset_top = 25.0
 offset_right = 173.0
@@ -103,6 +105,7 @@ vertical_alignment = 1
 
 [node name="Blocked" type="Label" parent="UI/ExitIndicators"]
 visible = false
+layout_mode = 0
 offset_left = -172.0
 offset_top = 25.0
 offset_right = 173.0

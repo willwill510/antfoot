@@ -4,12 +4,9 @@ res://player.tscn
 res://tiles.tscn
 res://props/tree.tscn
 res://props/watchtower.tscn
-res://watchtower.gd
 res://scenes/watchtower_inside.tscn
-res://world.gd
-res://globals.gd
-res://watchtower_inside.gd
 res://scenes/bunker.tscn
-res://bunker.gd
-res://scene_manager.gd
 res://scene_manager.tscn
+res://scene_manager.gd
+res://watchtower.gd
+res://watchtower_inside.gd

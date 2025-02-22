@@ -4,8 +4,7 @@ extends Node3D
 @onready var player = $Player
 @onready var indicator_available = player.get_node('UI/ExitIndicators/Available')
 @onready var indicator_blocked = player.get_node('UI/ExitIndicators/Blocked')
-
-var watchtower_scene = load('res://scenes/watchtower_inside.tscn').instantiate()
+@onready var scene_manager = get_parent()
 
 var entered = false
 var shown = false
@@ -18,14 +17,14 @@ func _physics_process(delta: float) -> void:
 		shown = true
 		
 		if Input.is_action_pressed('interact'):
-			SceneManager.switch_scene(watchtower_scene)
-			indicator_available.hide()
 			entered = true
+			indicator_available.hide()
+			scene_manager.switch_scene(scene_manager.world_scene)
 			
 	elif entered and overlaps:
 		indicator_blocked.show()
 		shown = true
 		
-	elif not entered and shown:
+	elif shown:
 		indicator_available.hide()
 		indicator_blocked.hide()

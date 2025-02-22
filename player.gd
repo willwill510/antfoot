@@ -4,6 +4,7 @@ const MOVE_SPEED = 4
 const MOUSE_SENS = 0.5
 const SPRITE_SCALE = Vector2(4, 4)
 
+@onready var scene_manager = get_parent().get_parent()
 @onready var anim_player = $AnimationPlayer
 @onready var map_menu = $UI/MapMenu
 @onready var tool_menu = $UI/ToolMenu

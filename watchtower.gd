@@ -13,19 +13,22 @@ var shown = false
 func _physics_process(delta: float) -> void:
 	var overlaps = overlaps_body(player)
 	
-	if not entered and overlaps: #player entered
+	if overlaps:
+		print(entered, shown)
+	
+	if not entered and overlaps: #player entered 
 		indicator_available.show()
 		shown = true
 		
 		if Input.is_action_pressed('interact'):
-			print('entered watchtower') #load inside watchtwr lvl
-			indicator_available.hide()
 			entered = true
+			indicator_available.hide()
+			scene_manager.switch_scene(scene_manager.watchtower_inside_scene)
 			
 	elif entered and overlaps:
 		indicator_blocked.show()
 		shown = true
 		
-	elif not entered and shown:
+	elif shown:
 		indicator_available.hide()
 		indicator_blocked.hide()
