@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmho2cnj6rvm6"]
 
-[ext_resource type="Script" path="res://bunker.gd" id="1_lwpjm"]
-[ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="2_bennj"]
+[ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="1_7nxsa"]
+[ext_resource type="Script" path="res://bunker_inside.gd" id="1_sdkru"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxjx2"]
 
@@ -14,10 +14,10 @@ size = Vector2(8, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r4pv6"]
 
-[node name="Bunker" type="Node3D"]
-script = ExtResource("1_lwpjm")
+[node name="BunkerInside" type="Node3D"]
+script = ExtResource("1_sdkru")
 
-[node name="Player" parent="." instance=ExtResource("2_bennj")]
+[node name="Player" parent="." instance=ExtResource("1_7nxsa")]
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99865, 0, 3.80556)

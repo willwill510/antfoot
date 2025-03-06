@@ -13,7 +13,6 @@ const TREE_SPRITE_SCALE = Vector3(2, 4, 2)
 const GRASS_SPRITE_SCALE = Vector3(0, 0, 0)
 const BUSH_SPRITE_SCALE = Vector3(0, 0, 0)
 const ROCK_SPRITE_SCALE = Vector3(0, 0, 0)
-const WATCHTOWER_SPRITE_SCALE = Vector3(4, 8, 4)
 
 const TREE_POSITION_OFFSET = Vector3(-0.5, 2, -0.5)
 const GRASS_POSITION_OFFSET = Vector3(0, 0, 0)
@@ -27,6 +26,8 @@ const BUSH_SPAWN_RATE = 2
 const ROCK_SPAWN_RATE = 1
 
 var player_instance = load('res://player.tscn').instantiate()
+var hunter_instance = load('res://hunter.tscn').instantiate()
+var bunker_instance = load('res://props/bunker.tscn').instantiate()
 
 var tree_prop = load('res://props/tree.tscn')
 var grass_prop #= load('res://props/grass.tscn')
@@ -55,12 +56,18 @@ var grid = []
 var trees = []
 var watchtowers = []
 
-var player
-
-var bunker_scene = load('res://scenes/bunker.tscn')
+var bunker_inside_scene = load('res://scenes/bunker_inside.tscn')
 var world_scene = load('res://scenes/world.tscn')
 var watchtower_inside_scene = load('res://scenes/watchtower_inside.tscn')
 var current_scene
+
+var active_fuses = 0
+var holding_fuse = false
+
+var chase = false
+
+func generate_rand_vector(width, length):
+	return Vector3(randi_range(0, width), 0, randi_range(0, length))
 
 func remove_children_from(node: Node) -> void:
 	for child in node.get_children():
@@ -73,20 +80,21 @@ func in_radius(a, b, radius) -> bool:
 	return get_dist_between(a, b) <= radius
 
 func generate_world() -> void:
-	player_instance.set_position(PLAYER_SPAWN)
-	player = player_instance
+	player_instance.set_position(PLAYER_SPAWN + Vector3i(0, 0, 5))
+	hunter_instance.set_position(generate_rand_vector(WIDTH, LENGTH))
+	bunker_instance.set_position(PLAYER_SPAWN)
 	
 	# FIX WITH PARAMS ABOUT SPAWN PROX
-	var watchtower_positions = [Vector3(randi_range(0, WIDTH), 0, randi_range(0, LENGTH)),]
+	var watchtower_positions = [generate_rand_vector(WIDTH, LENGTH),]
 	
 	while len(watchtower_positions) == 1:
-		var random_position = Vector3(randi_range(0, WIDTH), 0, randi_range(0, LENGTH))
+		var random_position = generate_rand_vector(WIDTH, LENGTH)
 		
 		if get_dist_between(watchtower_positions[0], random_position) > WATCHTOWER_DISTANCE_MIN:
 			watchtower_positions.append(random_position)
 
 	while len(watchtower_positions) == 2:
-		var random_position = Vector3(randi_range(0, WIDTH), 0, randi_range(0, LENGTH))
+		var random_position = generate_rand_vector(WIDTH, LENGTH)
 		
 		if get_dist_between(watchtower_positions[0], random_position) > WATCHTOWER_DISTANCE_MIN and \
 			get_dist_between(watchtower_positions[0], random_position) > WATCHTOWER_DISTANCE_MIN:
@@ -95,7 +103,6 @@ func generate_world() -> void:
 	for watchtower_position in watchtower_positions:
 		var watchtower_instance = watchtower_prop.instantiate()
 		
-		watchtower_instance.get_node('Sprite3D').scale = WATCHTOWER_SPRITE_SCALE
 		watchtower_instance.set_position(watchtower_position + WATCHTOWER_POSITION_OFFSET)
 		watchtowers.append(watchtower_instance)
 	
@@ -129,7 +136,26 @@ func generate_world() -> void:
 
 func _ready() -> void:
 	generate_world()
-	switch_scene(bunker_scene)
+	switch_scene(bunker_inside_scene)
+	
+	var story = current_scene.get_node('Player').get_node('UI/Story')
+	var start = story.get_node('Start')
+	
+	story.show()
+	start.show()
+	
+	await get_tree().create_timer(4).timeout 
+	
+	story.hide()
+	start.hide()
+
+func update_fuse_visiblity():
+	var fuse = current_scene.get_node('Player').get_node('UI/Fuse')
+		
+	if holding_fuse:
+		fuse.show()
+	else:
+		fuse.hide()
 
 func switch_scene(new_scene):
 	var new_instance = new_scene.instantiate()
@@ -146,3 +172,5 @@ func switch_scene(new_scene):
 		remove_child(old_scene)
 	else:
 		add_child(new_instance)
+	
+	update_fuse_visiblity()

@@ -13,7 +13,7 @@ var shown = false
 func _physics_process(delta: float) -> void:
 	var overlaps = overlaps_body(player)
 	
-	if not entered and overlaps: #player entered 
+	if not entered and overlaps and not scene_manager.holding_fuse: #player entered 
 		indicator_available.show()
 		shown = true
 		
@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 			indicator_available.hide()
 			scene_manager.switch_scene(scene_manager.watchtower_inside_scene)
 			
-	elif entered and overlaps:
+	elif (entered or scene_manager.holding_fuse) and overlaps:
 		indicator_blocked.show()
 		shown = true
 		

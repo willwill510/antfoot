@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://6vuytot16dnc"]
+[gd_scene load_steps=8 format=3 uid="uid://6vuytot16dnc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_l1tvb"]
 [ext_resource type="PackedScene" uid="uid://dubupiotcgo6l" path="res://map_menu.tscn" id="2_a6fhy"]
-[ext_resource type="PackedScene" uid="uid://dgtcfj0l6tkj1" path="res://tool_menu.tscn" id="2_esh3s"]
+[ext_resource type="Texture2D" uid="uid://dvuau77bjama3" path="res://textures/tools/fuse.png" id="3_u3p6p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3c7g1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m6q2a"]
+font_size = 36
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7dr8"]
+bg_color = Color(0.051971, 0.051971, 0.0519709, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r67jw"]
 font_size = 36
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
@@ -20,31 +28,9 @@ shape = SubResource("CapsuleShape3D_3c7g1")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575409, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -2000)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="ToolEquiped" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="UI/ToolEquiped"]
-texture_filter = 1
-
 [node name="MapMenu" parent="UI" instance=ExtResource("2_a6fhy")]
-
-[node name="ToolMenu" parent="UI" instance=ExtResource("2_esh3s")]
 
 [node name="EnterIndicators" type="Control" parent="UI"]
 layout_mode = 3
@@ -75,7 +61,7 @@ offset_left = -172.0
 offset_top = 25.0
 offset_right = 173.0
 offset_bottom = 75.0
-text = "ALREADY ENTERED"
+text = "CANNOT ENTER"
 label_settings = SubResource("LabelSettings_m6q2a")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -112,5 +98,46 @@ offset_right = 173.0
 offset_bottom = 75.0
 text = "CANNOT EXIT"
 label_settings = SubResource("LabelSettings_m6q2a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fuse" type="Sprite2D" parent="UI"]
+visible = false
+texture_filter = 1
+position = Vector2(1071, 498)
+scale = Vector2(5, 5)
+texture = ExtResource("3_u3p6p")
+
+[node name="Story" type="Panel" parent="UI"]
+visible = false
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 1159.0
+offset_bottom = 655.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7dr8")
+
+[node name="Start" type="Label" parent="UI/Story"]
+visible = false
+layout_mode = 0
+offset_left = 132.0
+offset_top = 247.0
+offset_right = 994.0
+offset_bottom = 360.0
+text = "Your bunker's fuses have blown out! 
+Find new ones in the scattered watchtowers!"
+label_settings = SubResource("LabelSettings_r67jw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="End" type="Label" parent="UI/Story"]
+visible = false
+layout_mode = 0
+offset_left = 132.0
+offset_top = 247.0
+offset_right = 994.0
+offset_bottom = 360.0
+text = "You got the power back, you can now live
+alone in th woods forever!"
+label_settings = SubResource("LabelSettings_r67jw")
 horizontal_alignment = 1
 vertical_alignment = 1

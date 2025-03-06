@@ -5,16 +5,11 @@ const MOUSE_SENS = 0.5
 const SPRITE_SCALE = Vector2(4, 4)
 
 @onready var scene_manager = get_parent().get_parent()
-@onready var anim_player = $AnimationPlayer
-@onready var map_menu = $UI/MapMenu
-@onready var tool_menu = $UI/ToolMenu
-@onready var tool_sprite = $UI/ToolEquiped/Sprite2D
 
 var focus = 'world'
-var equiped_tool: ToolOption
+var equipped = false
 
 func _ready() -> void:
-	tool_menu.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await get_tree().process_frame
 	get_tree().call_group('zombies', 'set_player', self)
@@ -33,22 +28,18 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed('restart'):
 		kill()
 		
-	if Input.is_action_just_pressed('map') and focus == 'world':
-		focus = 'map_menu'
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	elif Input.is_action_just_released('map') and focus == 'map_menu':
-		focus = 'world'
-		
-	if Input.is_action_just_pressed('menu') and focus == 'world':
-		focus = 'tool_menu'
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-		tool_menu.show()
-	elif Input.is_action_just_released('menu') and focus == 'tool_menu':
-		focus = 'world'
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		equiped_tool = tool_menu.Close()
-		tool_sprite.texture = ImageTexture.create_from_image(equiped_tool.get_image())
-		tool_sprite.global_scale = SPRITE_SCALE
+	#if Input.is_action_just_pressed('map') and focus == 'world':
+		#focus = 'map_menu'
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	#elif Input.is_action_just_released('map') and focus == 'map_menu':
+		#focus = 'world'
+		#
+	#if Input.is_action_just_pressed('menu') and focus == 'world':
+		#focus = 'tool_menu'
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	#elif Input.is_action_just_released('menu') and focus == 'tool_menu':
+		#focus = 'world'
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
 	if focus == 'world':
