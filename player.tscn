@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://6vuytot16dnc"]
+[gd_scene load_steps=7 format=3 uid="uid://6vuytot16dnc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_l1tvb"]
-[ext_resource type="PackedScene" uid="uid://dubupiotcgo6l" path="res://map_menu.tscn" id="2_a6fhy"]
 [ext_resource type="Texture2D" uid="uid://dvuau77bjama3" path="res://textures/tools/fuse.png" id="3_u3p6p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3c7g1"]
@@ -29,8 +28,6 @@ shape = SubResource("CapsuleShape3D_3c7g1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575409, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
-
-[node name="MapMenu" parent="UI" instance=ExtResource("2_a6fhy")]
 
 [node name="EnterIndicators" type="Control" parent="UI"]
 layout_mode = 3
