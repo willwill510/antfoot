@@ -1,7 +1,6 @@
-res://player.tscn
-res://tiles.tres
-res://scene_manager.gd
 res://scenes/world.tscn
+res://tiles.tres
+res://player.tscn
 res://tiles.tscn
 res://props/tree.tscn
 res://props/watchtower.tscn
@@ -10,4 +9,5 @@ res://scenes/bunker_inside.tscn
 res://scene_manager.tscn
 res://props/bunker.tscn
 res://hunter.tscn
-res://bunker_inside.gd
+res://props/grass.tscn
+res://scene_manager.gd

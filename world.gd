@@ -18,3 +18,6 @@ func _ready() -> void:
 	
 	for tree in scene_manager.trees:
 		add_child(tree)
+	
+	for grass in scene_manager.grasses:
+		add_child(grass)

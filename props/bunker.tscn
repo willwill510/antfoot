@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq5wh7ha684hm"]
 
-[ext_resource type="Texture2D" uid="uid://o2eyp0foofi3" path="res://icon.svg" id="1_uebns"]
 [ext_resource type="Script" path="res://bunker.gd" id="1_vghmd"]
+[ext_resource type="Texture2D" uid="uid://fhwssxgkqfwc" path="res://textures/bunker.png" id="2_sm5ru"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdufa"]
 
@@ -13,6 +13,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("BoxShape3D_vdufa")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 billboard = 2
 texture_filter = 0
-texture = ExtResource("1_uebns")
+texture = ExtResource("2_sm5ru")
