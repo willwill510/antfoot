@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjynuxvhb2qnw"]
 
-[ext_resource type="Script" path="res://watchtower_inside.gd" id="1_bm2lx"]
+[ext_resource type="Script" uid="uid://ddy5i6sq5i508" path="res://watchtower_inside.gd" id="1_bm2lx"]
 [ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="1_kru62"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5kxd7"]
@@ -34,3 +34,5 @@ mesh = SubResource("PlaneMesh_20g2a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7903, -0.396821, 5.10745)
 mesh = SubResource("BoxMesh_b3fxe")
 skeleton = NodePath("../MeshInstance3D")
+
+[node name="Ambience" type="AudioStreamPlayer2D" parent="."]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://6vuytot16dnc"]
+[gd_scene load_steps=10 format=3 uid="uid://6vuytot16dnc"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_l1tvb"]
+[ext_resource type="Script" uid="uid://bjkagf56tbejv" path="res://player.gd" id="1_l1tvb"]
+[ext_resource type="AudioStream" uid="uid://dqaxk8u8nn3fa" path="res://audio/walking_inside.mp3" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://c1111q4njj1jy" path="res://audio/breathing.mp3" id="3_sweqy"]
 [ext_resource type="Texture2D" uid="uid://dvuau77bjama3" path="res://textures/tools/fuse.png" id="3_u3p6p"]
+[ext_resource type="AudioStream" uid="uid://cka4vr87mcw43" path="res://audio/walking_outside.mp3" id="5_2hs0m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3c7g1"]
 
@@ -157,3 +160,12 @@ text = "He got you, you're dead! :("
 label_settings = SubResource("LabelSettings_r67jw")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Breathing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sweqy")
+
+[node name="FootstepsInside" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_i3pqv")
+
+[node name="FootstepsOutside" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2hs0m")

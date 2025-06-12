@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8wnfv8h27jux"]
 
-[ext_resource type="Script" path="res://hunter.gd" id="1_2ajjb"]
+[ext_resource type="Script" uid="uid://463i2yuc2yup" path="res://hunter.gd" id="1_2ajjb"]
 [ext_resource type="Texture2D" uid="uid://dmctvi7yg8tay" path="res://textures/hunter.png" id="2_obybp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfrj5"]
@@ -27,3 +27,5 @@ texture = ExtResource("2_obybp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_i5ids")
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]

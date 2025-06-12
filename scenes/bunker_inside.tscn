@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmho2cnj6rvm6"]
 
 [ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="1_7nxsa"]
-[ext_resource type="Script" path="res://bunker_inside.gd" id="1_sdkru"]
+[ext_resource type="Script" uid="uid://b7kgj4e17wawi" path="res://bunker_inside.gd" id="1_sdkru"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxjx2"]
 

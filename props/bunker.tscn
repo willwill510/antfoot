@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq5wh7ha684hm"]
 
-[ext_resource type="Script" path="res://bunker.gd" id="1_vghmd"]
+[ext_resource type="Script" uid="uid://yjqgfimbjoav" path="res://bunker.gd" id="1_vghmd"]
 [ext_resource type="Texture2D" uid="uid://fhwssxgkqfwc" path="res://textures/bunker.png" id="2_sm5ru"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdufa"]

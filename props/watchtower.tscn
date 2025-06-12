@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://h2iiaj5n8w2m"]
 
-[ext_resource type="Script" path="res://watchtower.gd" id="1_xbpte"]
+[ext_resource type="Script" uid="uid://6o6rj2h7aoxh" path="res://watchtower.gd" id="1_xbpte"]
 [ext_resource type="Texture2D" uid="uid://ci12qswlox228" path="res://textures/watchtower.png" id="2_y56gs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j6wpj"]
