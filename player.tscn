@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://6vuytot16dnc"]
+[gd_scene load_steps=12 format=3 uid="uid://6vuytot16dnc"]
 
 [ext_resource type="Script" uid="uid://bjkagf56tbejv" path="res://player.gd" id="1_l1tvb"]
 [ext_resource type="AudioStream" uid="uid://dqaxk8u8nn3fa" path="res://audio/walking_inside.mp3" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://c1111q4njj1jy" path="res://audio/breathing.mp3" id="3_sweqy"]
 [ext_resource type="Texture2D" uid="uid://dvuau77bjama3" path="res://textures/tools/fuse.png" id="3_u3p6p"]
+[ext_resource type="AudioStream" uid="uid://ccl18ylqre3eq" path="res://audio/heartbeat.mp3" id="4_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://cka4vr87mcw43" path="res://audio/walking_outside.mp3" id="5_2hs0m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3c7g1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0, 0.535996, 0.832185, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m6q2a"]
 font_size = 36
@@ -29,8 +33,17 @@ shape = SubResource("CapsuleShape3D_3c7g1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575409, 0)
+far = 80.0
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Stamina" type="ProgressBar" parent="UI"]
+offset_left = 32.0
+offset_top = 29.0
+offset_right = 324.0
+offset_bottom = 52.0
+theme_override_constants/outline_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_2hs0m")
 
 [node name="EnterIndicators" type="Control" parent="UI"]
 layout_mode = 3
@@ -163,6 +176,9 @@ vertical_alignment = 1
 
 [node name="Breathing" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_sweqy")
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2hs0m")
 
 [node name="FootstepsInside" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_i3pqv")

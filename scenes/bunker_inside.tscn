@@ -1,9 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmho2cnj6rvm6"]
+[gd_scene load_steps=15 format=3 uid="uid://dmho2cnj6rvm6"]
 
 [ext_resource type="PackedScene" uid="uid://6vuytot16dnc" path="res://player.tscn" id="1_7nxsa"]
 [ext_resource type="Script" uid="uid://b7kgj4e17wawi" path="res://bunker_inside.gd" id="1_sdkru"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qx138"]
+size = Vector3(9.70331, 1.48975, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxjx2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nkcug"]
+size = Vector2(10, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx138"]
+albedo_color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nc6gi"]
+material = SubResource("StandardMaterial3D_qx138")
+size = Vector3(1, 0.5, 1.5)
+
+[sub_resource type="TextMesh" id="TextMesh_nkcug"]
+text = "FUSE BOX
+
+>MISSING<
+>MISSING<
+>MISSING<"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cuuq1"]
 albedo_color = Color(0, 0.329514, 0.00901195, 1)
@@ -12,23 +32,107 @@ albedo_color = Color(0, 0.329514, 0.00901195, 1)
 material = SubResource("StandardMaterial3D_cuuq1")
 size = Vector2(8, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcpaa"]
+albedo_color = Color(0.333805, 0.217027, 0.0687148, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_r4pv6"]
+material = SubResource("StandardMaterial3D_tcpaa")
+size = Vector3(1.2, 2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qx138"]
+size = Vector2(2, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nc6gi"]
+size = Vector2(4, 10)
 
 [node name="BunkerInside" type="Node3D"]
 script = ExtResource("1_sdkru")
 
 [node name="Player" parent="." instance=ExtResource("1_7nxsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99605, 0, 3.46888)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.08888)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0406494, 0.244873, 0.17936)
+shape = SubResource("BoxShape3D_qx138")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.23859, 0, 0.137902)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04953, 0.244873, 0.17936)
+shape = SubResource("BoxShape3D_qx138")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.62249, 0, 0.137902)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04953, 0.244873, 0.17936)
+shape = SubResource("BoxShape3D_qx138")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.72477)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0406494, 0.244873, -0.399487)
+shape = SubResource("BoxShape3D_qx138")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99865, 0, 3.80556)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99105, 0, 4.5169)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.38243)
 shape = SubResource("BoxShape3D_sxjx2")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.324625, -4.70245)
+mesh = SubResource("PlaneMesh_nkcug")
+skeleton = NodePath("../OmniLight3D")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.324625, -4.47525)
+mesh = SubResource("BoxMesh_nc6gi")
+skeleton = NodePath("../OmniLight3D")
+
+[node name="FuseText" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.471018, -4.24074)
+mesh = SubResource("TextMesh_nkcug")
+skeleton = NodePath("../OmniLight3D")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.324625, 4.82248)
+mesh = SubResource("PlaneMesh_nkcug")
+skeleton = NodePath("../OmniLight3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.743557, 0)
 mesh = SubResource("PlaneMesh_1ssca")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97935, 0, 4.50524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97935, 0, 5.19562)
 mesh = SubResource("BoxMesh_r4pv6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.508981, -0.860777, 0, 0.860777, -0.508981, 0, 0, 0, 1, 3.48549, 0.0896089, 0)
+mesh = SubResource("PlaneMesh_qx138")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, 2.18564, 1.37758, 0)
+mesh = SubResource("PlaneMesh_qx138")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.508981, 0.860777, -8.74228e-08, 0.860777, -0.508981, 0, -4.44966e-08, -7.52515e-08, -1, -3.49301, 0.0896089, 0.0825937)
+mesh = SubResource("PlaneMesh_qx138")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0.5, -8.74228e-08, 0.5, -0.866025, -6.45239e-09, -7.89365e-08, -3.81234e-08, -1, -2.2037, 1.37758, -0.0825937)
+mesh = SubResource("PlaneMesh_qx138")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 8.74228e-08, 8.74228e-08, 8.74228e-08, -1, 0, 8.74228e-08, 7.64274e-15, -1, 0.0169961, 1.8618, -0.159455)
+mesh = SubResource("PlaneMesh_nc6gi")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.819472, 0.573119, 0, -0.573119, 0.819472, 0, 0, 0, 1, 0, 1.579, 0)

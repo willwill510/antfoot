@@ -1,16 +1,18 @@
 extends CharacterBody3D
 
 const MOVE_SPEED = 4
-const SPRINT_SPEED = 6
+const SPRINT_SPEED = 8
 const STAMINA_REGEN = 0.25
 const MOVE_PITCH = 1
 const SPRINT_PITCH = 2
-const MAX_STAMINA = 6
+const MAX_STAMINA = 12
 const MOUSE_SENS = 0.5
 const SPRITE_SCALE = Vector2(4, 4)
 
 @onready var scene_manager = get_parent().get_parent()
+@onready var stamina_bar = $UI/Stamina
 @onready var breathing = $Breathing
+@onready var heartbeat = $Heartbeat
 @onready var footsteps_inside = $FootstepsInside
 @onready var footsteps_outside = $FootstepsOutside
 
@@ -24,8 +26,12 @@ var equipped = false
 var footstep_audio
 
 func _ready() -> void:
+	stamina_bar.max_value = MAX_STAMINA
+	stamina_bar.value = stamina
+	
 	breathing.play()
 	footstep_audio = footsteps_inside
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await get_tree().process_frame
 	get_tree().call_group('zombies', 'set_player', self)
@@ -75,6 +81,12 @@ func _physics_process(delta: float) -> void:
 		
 		breathing.volume_db = linear_to_db(1 - (stamina / MAX_STAMINA))
 		
+		if scene_manager.chasing and not heartbeat.playing:
+			heartbeat.play()
+		
+		if not scene_manager.chasing and heartbeat.playing:
+			heartbeat.stop()
+		
 		if is_outside():
 			footstep_audio = footsteps_outside
 		else:
@@ -115,11 +127,22 @@ func _physics_process(delta: float) -> void:
 			elif exausted:
 				exausted = false
 		
+		update_stamina_bar()
+		
 		#if Input.is_action_pressed('use') and !anim_player.is_playing():
 			#anim_player.play('use_flare')
 			#var coll = raycast.get_collider()
 			#if raycast.is_colliding() and coll.has_method('kill'):
 				#coll.kill()
+
+func update_stamina_bar() -> void:
+	stamina_bar.value = stamina
+	
+	if stamina < MAX_STAMINA and not stamina_bar.visible:
+		stamina_bar.show()
+	
+	if stamina >= MAX_STAMINA and stamina_bar.visible:
+		stamina_bar.hide()
 
 func kill() -> void:
 	get_tree().reload_current_scene()

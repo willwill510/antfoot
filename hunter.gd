@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		
 		if not scene_manager.chasing:
 			scene_manager.chasing = true
-	elif not scene_manager.chasing:
+	elif scene_manager.chasing:
 		scene_manager.chasing = false
 	
 	if in_radius(current_target, global_position, ALLOWANCE_RADIUS):
@@ -40,5 +40,5 @@ func _physics_process(delta: float) -> void:
 	var move_vec = global_position.direction_to(current_target).normalized()
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_vec.y = 0
-	print(global_position, current_target)
+	print(get_dist_between(global_position, current_target))
 	move_and_collide(move_vec * MOVE_SPEED * delta)

@@ -27,5 +27,3 @@ texture = ExtResource("2_obybp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_i5ids")
-
-[node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
